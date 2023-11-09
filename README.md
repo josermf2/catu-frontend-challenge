@@ -22,11 +22,13 @@ Não temos nenhuma especificação de design para este projeto, o cliente nos de
 
 As seguintes *user stories* foram adicionadas para você trabalhar:
 
-> Eu, como jogador do show do milhão, devo conseguir iniciar um novo jogo - colocando apenas meu nome - para poder responder 10 perguntas aleatórias de múltipla escolha, sendo 4 fáceis (valendo 1 ponto cada), 4 médias (valendo 1.5 pontos cada) e 2 difíceis (valendo 2 pontos cada). Minha pontuação será a soma das perguntas acertadas, de acordo com a dificuldade. Eu espero que o jogo me mostre qual era a resposta certa, caso eu erre, podendo passar para a próxima. Ao finalizar, espero que o jogo mostre minha pontuação e me deixe ir para a página onde posso recomeçar o jogo.
+> Eu, como jogador do show do milhão, devo conseguir iniciar um novo jogo - colocando apenas meu nome - para poder responder 10 perguntas aleatórias de múltipla escolha, sendo 4 fáceis (valendo 1 ponto cada), 4 médias (valendo 1.5 pontos cada) e 2 difíceis (valendo 2 pontos cada). Minha pontuação será a soma das perguntas acertadas, de acordo com a dificuldade. Eu espero que o jogo me mostre qual era a resposta certa, caso eu erre, então me deixando passar para a próxima no clique de um botão. Ao finalizar, espero que o jogo mostre minha pontuação e me deixe ir para a página onde posso recomeçar o jogo.
 
 > Eu, como jogador do show do milhão, devo conseguir visualizar o ranking de jogadores, com seus nomes, data e pontuação atingida.
 
 As perguntas devem aparecer com opções onde o usuário não só consiga responder com o mouse ao clicar, mas também com o teclado (opções 1, 2, 3, 4 por ex)
+
+> **Importante**: Você pode utilizar o localStorage para gravar a pontuação e gerar o ranking.
 
 ### Recursos
 
