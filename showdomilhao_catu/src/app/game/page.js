@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Link from 'next/link';
 import NameInput from '../../components/NameInput'
-
+  
 function Game() {
 
   const [questions, setQuestions] = useState([]);
@@ -17,6 +17,7 @@ function Game() {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [userName, setUserName] = useState(null);
+  const dataFetchedRef = useRef(false);
 
   const pointsByDifficulty = {
     easy: 1,
@@ -25,9 +26,25 @@ function Game() {
   };
 
   useEffect(() => {
+    if (dataFetchedRef.current) return;
+
     async function fetchQuestions() {
       try {
-        const easyResponse = await axios.get(
+        const allQuestions = await axios.get(
+          'https://opentdb.com/api.php?amount=50&type=multiple&encode=base64'
+        );
+        const decodedQuestions = allQuestions.data.results.map(decodeQuestions);
+        
+        const filterQuestionsByDifficulty = (difficulty, count) => {
+          return decodedQuestions
+            .filter((question) => question.difficulty === difficulty)
+            .slice(0, count);
+        };
+        
+        const selectedQuestions = [...filterQuestionsByDifficulty("easy", 4), ...filterQuestionsByDifficulty("medium", 4), ...filterQuestionsByDifficulty("hard", 2)];
+        
+        //versão antiga
+        /*const easyResponse = await axios.get(
           'https://opentdb.com/api.php?amount=4&difficulty=easy&type=multiple&encode=base64'
         );
         const easyQuestions = easyResponse.data.results.map(decodeQuestions);
@@ -42,14 +59,16 @@ function Game() {
         );
         const hardQuestions = hardResponse.data.results.map(decodeQuestions);
 
-        const allQuestions = easyQuestions.concat(mediumQuestions, hardQuestions);
-        setQuestions(allQuestions);
+        const allQuestions = easyQuestions.concat(mediumQuestions, hardQuestions);*/
+        
+        setQuestions(selectedQuestions);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching questions:', error);
       }
     }
 
+    dataFetchedRef.current = true;
     fetchQuestions();
   }, []);
 
@@ -153,7 +172,6 @@ function Game() {
   const handleStartGame = (name) => {
     setUserName(name);
   };
-
 
   return (
     <div className="h-screen bg-indigo-900 flex items-center justify-center">
