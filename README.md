@@ -44,3 +44,10 @@ Para este projeto, decidimos usar o `Open Trivia DB`: https://opentdb.com/api_co
 
 ## 🖥️ É isso! Happy Coding!
 Para sanar qualquer dúvida, entre em contato com o nosso time!
+
+## Como rodar?
+Para rodar o código desenvolvido é só entrar na pasta showdomilhao_catu e rodar os seguintes comandos:
+```
+npm install
+npm run dev
+```
